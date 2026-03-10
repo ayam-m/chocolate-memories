@@ -48,12 +48,30 @@
       - 味評価（5段階）：甘さ、濃厚さ、口どけ
       （味評価の項目は、見返した時に直感的に思い出せることを基準として厳選しています。）
       - メモ
-  - 贈答用：写真1枚、宛名、贈答日、ブランド名、メモ
+  - 贈答用：
+      - 写真1枚
+      - 宛名
+      - 贈答日
+      - ブランド名
+      - メモ
 - 一覧表示
 - 詳細表示
 - 編集
 - 削除   
+
+
+## 画面遷移図
+https://www.figma.com/design/gJthbyXgDMwEl1AtHiA4fi/%E3%82%B7%E3%83%A7%E3%82%B3%E3%83%A9%E3%81%AE%E8%A8%98%E6%86%B6%E3%81%AE%E7%94%BB%E9%9D%A2%E9%81%B7%E7%A7%BB%E5%9B%B3?node-id=0-1&t=oPGIQ0m72mqQTkB2-1
   
+
+## ER図
+<details>
+<summary></summary>
+
+[![Image from Gyazo](https://i.gyazo.com/8c5fae1cdfce0cfd5e2f1adc39961866.png)](https://gyazo.com/8c5fae1cdfce0cfd5e2f1adc39961866)
+
+</details>
+
 
 ## 本リリース追加予定機能
 - 登録機能拡充
