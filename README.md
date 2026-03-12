@@ -68,7 +68,7 @@ https://www.figma.com/design/gJthbyXgDMwEl1AtHiA4fi/%E3%82%B7%E3%83%A7%E3%82%B3%
 <details>
 <summary></summary>
 
-[![Image from Gyazo](https://i.gyazo.com/8c5fae1cdfce0cfd5e2f1adc39961866.png)](https://gyazo.com/8c5fae1cdfce0cfd5e2f1adc39961866)
+[![Image from Gyazo](https://i.gyazo.com/8029099d9896e989c54f37dc5d4d8398.png)](https://gyazo.com/8029099d9896e989c54f37dc5d4d8398)
 
 </details>
 
