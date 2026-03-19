@@ -38,3 +38,6 @@
 !/app/assets/builds/.keep
 
 /node_modules
+
+# macOS関連
+.DS_Store
