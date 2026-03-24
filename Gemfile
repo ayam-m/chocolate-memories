@@ -60,4 +60,4 @@ end
 
 # ユーザー認証機能
 gem "devise"
-gem 'devise-i18n'
+gem "devise-i18n"
