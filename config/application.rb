@@ -26,5 +26,8 @@ module Myapp
 
     # 日本語をデフォルトに設定
     config.i18n.default_locale = :ja
+
+    # バリアント処理のライブラリをlibvipsに指定
+    config.active_storage.variant_processor = :vips
   end
 end
