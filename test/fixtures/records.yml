@@ -1,0 +1,17 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user: one
+  brand: one
+  record_type: 1
+  event_date: 2026-03-28
+  recipient_name: MyString
+  memo: MyText
+
+two:
+  user: two
+  brand: two
+  record_type: 1
+  event_date: 2026-03-28
+  recipient_name: MyString
+  memo: MyText
