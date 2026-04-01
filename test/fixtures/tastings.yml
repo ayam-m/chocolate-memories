@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  record: one
+  sweetness: 1
+  richness: 1
+  melting: 1
+
+two:
+  record: two
+  sweetness: 1
+  richness: 1
+  melting: 1

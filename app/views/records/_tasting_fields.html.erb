@@ -1,0 +1,20 @@
+<div class="my-4">
+  <label class="block text-md text-gray-800"><%= label %></label>
+
+  <div class="grid grid-cols-5 rounded border border-gray-200">
+    <% options.each_with_index do |text, i| %>
+      <!-- ラジオボタン本体はhiddenで隠す -->
+      <label class="cursor-pointer">
+        <!-- 5段階評価の数値は1〜5とする -->
+        <%= form.radio_button field, i + 1, class: "peer hidden" %>
+        <!-- ラジオボタンの直後の要素を peer-checked: で装飾 -->
+        <div class="w-full py-3 text-[10px] sm:text-xs text-center transition-all bg-white text-gray-600
+                    peer-checked:bg-stone-500 peer-checked:text-white rounded
+                    <!-- 非選択時のみホバーを有効にするための指定 -->
+                    peer-[:not(:checked)]:hover:bg-gray-100">
+          <%= text %>
+        </div>
+      </label>
+    <% end %>
+  </div>
+</div>

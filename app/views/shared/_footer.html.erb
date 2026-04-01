@@ -1,0 +1,15 @@
+<div class="footer">
+  <title>ログインユーザー専用のフッター</title>
+</div>
+<footer class="bg-orange-50 shadow-sm border-b border-amber-100">
+  <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex items-center justify-between">
+    <div class="flex items-center">
+      <!-- 新規追加ボタン -->
+      <% if user_signed_in? && current_page?(root_path) %>
+        <%= link_to new_record_path(record_type: :eaten), class: "bg-amber-900 text-white px-4 py-2 rounded-md text-sm hover:bg-amber-800" do %>
+        <span class="text-3xl font-bold">+</span>
+        <% end %>
+      <% end %>
+    </div>
+  </nav>
+</footer>

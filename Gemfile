@@ -67,3 +67,6 @@ gem "cloudinary"
 
 # ActiveStorageとCloudinaryの連携用
 gem "activestorage-cloudinary-service"
+
+# ActiveStorageのバリデーション
+gem "active_storage_validations"
