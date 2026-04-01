@@ -32,6 +32,7 @@ Rails.application.configure do
   end
 
   # Store uploaded files on the local file system (see config/storage.yml for options).
+  # 開発環境でcloudinaryに保存して試したい時は:cloudinaryに変更する
   config.active_storage.service = :local
 
   # Don't care if the mailer can't send.
