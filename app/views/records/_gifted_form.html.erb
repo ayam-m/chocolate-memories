@@ -1,0 +1,62 @@
+<div class="min-h-screen flex flex-col justify-center lg:px-8">
+  <div class="sm:mx-auto sm:w-full sm:max-w-md">
+    <h2 class="mb-6 text-center text-3xl font-extrabold">贈り物記録</h2>
+  <%= form_with model: @record do |f| %>
+    <!-- エラーメッセージ表示 -->
+    <%= render 'shared/error_messages', object: f.object %>
+    <!-- 隠しデータ -->
+    <%= f.hidden_field :record_type, value: :gifted %>
+
+    <!-- 画像アップロード -->
+    <div data-controller="preview" class="mb-6">
+      <!-- ボタンエリア -->
+      <div class="flex items-center space-x-4 mb-4">
+        <label class="text-md text-gray-700">画像:</label>
+
+        <!-- ファイル選択ボタン -->
+        <label for="<%= f.field_id(:image) %>" 
+              class="cursor-pointer bg-white border border-gray-300 px-4 py-2 rounded text-sm hover:bg-gray-200">
+          ファイルを選択
+        </label>
+
+        <!-- 本物の入力欄（hidden） -->
+        <%= f.file_field :image, 
+            class: "hidden", 
+            data: { 
+              preview_target: "input", 
+              action: "change->preview#update" 
+            } %>
+      </div>
+      
+      <!-- プレビューの表示 -->
+      <div class="mt-2">
+        <img data-preview-target="image" src="" 
+            class="hidden w-full max-w-md h-60 object-contain rounded border border-gray-300 bg-gray-100">
+      </div>
+    </div>
+
+    <div class="field">
+      <%= f.label :event_date, "贈答日:", class: "text-md text-gray-800" %>
+      <%= f.date_field :event_date, class: "border border-gray-300 bg-white rounded px-3 py-2 mb-6 w-full text-gray-600" %>
+    </div>         
+
+    <div class="field">
+      <%= f.label :recipient_name, "宛名", class: "text-md text-gray-800" %>
+      <%= f.text_field :recipient_name, class: "border border-gray-300 bg-white rounded px-3 py-2 mb-6 w-full" %>
+    </div>
+
+    <div class="field">
+      <%= f.label :brand_name, "ブランド名:", class: "text-md text-gray-800" %>
+      <%= f.text_field :brand_name, class: "border border-gray-300 bg-white rounded px-3 py-2 mb-6 w-full" %>
+    </div>
+
+    
+    <div class="field">
+      <%= f.label :memo, "メモ:", class: "text-md text-gray-800" %>
+      <%= f.text_area :memo, class: "border border-gray-300 bg-white rounded px-3 py-5 mb-6 w-full" %>
+    </div>
+
+    <%= f.submit "保存", class: "bg-amber-900 text-white px-4 py-2 my-5 rounded-lg w-full text-md hover:bg-amber-800" %>
+  <% end %>
+  </div>
+</div>

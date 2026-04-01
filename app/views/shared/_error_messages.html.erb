@@ -1,0 +1,12 @@
+<% if object.errors.any? %>
+  <div class="mb-6 p-4 bg-red-50 border border-red-200 rounded-lg text-red-700 text-sm">
+    <div class="font-bold mb-2">
+      <%= object.errors.count %>件のエラーにより保存できませんでした。
+    </div>
+    <ul class="list-disc list-inside space-y-1">
+      <% object.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
