@@ -15,11 +15,15 @@ class RecordsController < ApplicationController
     @record = current_user.records.build(record_params)
 
     if @record.save
-      redirect_to records_path, notice: "#{@record.record_type}記録が保存されました。"
+      redirect_to record_path(@record), notice: "#{@record.record_type}記録が保存されました。"
     else
       flash.now[:alert] = "記録が保存されませんでした。"
       render :new, status: :unprocessable_entity
     end
+  end
+
+  def show
+    @record = Record.find(params[:id])
   end
 
   private

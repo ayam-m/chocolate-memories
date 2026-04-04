@@ -1,3 +1,17 @@
 <div class="mx-auto px-4">
-  <h1 class="text-2xl font-bold m-8">仮の一覧画面</h1>
+  <h1 class="text-2xl font-bold m-8 mb-4">仮の一覧画面</h1>
+  <div class="flex flex-wrap gap-4">
+    <% if @records.present? %>
+      <% @records.each do |record| %>
+        <div id="record-<%= record.id %>">
+          <%= link_to record_path(record) do %>
+            <% if record.image.attached? %>
+              <%= image_tag record.image.variant(resize_to_limit: [200, 200]), class: "w-48 h-48 object-cover" %>
+            <% else %>
+              <%= image_tag "no_image.png", class: "w-48 h-48 object-cover" %>
+            <% end %>
+          <% end %>
+        </div>
+      <% end %>
+    <% end %>
 </div>

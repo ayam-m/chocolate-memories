@@ -53,21 +53,21 @@
           form: t,
           field: :sweetness,
           label: "甘さ:",
-          options: ["甘い", "やや甘い", "普通", "やや苦い", "苦い"] %>
+          options: Tasting::SWEETNESS_OPTS.values %>
         
         <%# 濃厚さ %>
         <%= render 'tasting_fields',
           form: t,
           field: :richness,
           label: "濃厚さ:",
-          options: ["濃厚", "やや濃厚", "普通", "ややあっさり", "あっさり"] %>
+          options: Tasting::RICHNESS_OPTS.values %>
 
         <%# 口どけ %>
         <%= render 'tasting_fields',
           form: t,
           field: :melting,
           label: "口どけ:",
-          options: ["なめらか", "ややなめらか", "普通", "やや固い", "固い"] %>
+          options: Tasting::MELTING_OPTS.values %>
       <% end %>
     </div>
 
