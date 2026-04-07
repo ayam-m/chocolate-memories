@@ -5,11 +5,7 @@
       <% @records.each do |record| %>
         <div id="record-<%= record.id %>">
           <%= link_to record_path(record) do %>
-            <% if record.image.attached? %>
-              <%= image_tag record.image.variant(resize_to_limit: [200, 200]), class: "w-48 h-48 object-cover" %>
-            <% else %>
-              <%= image_tag "no_image.png", class: "w-48 h-48 object-cover" %>
-            <% end %>
+            <%= image_tag switch_image_path(record.image, 300, 300), class: "w-48 h-48 object-cover" %>
           <% end %>
         </div>
       <% end %>

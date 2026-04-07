@@ -65,8 +65,5 @@ gem "devise-i18n"
 # 画像保存用ストレージ（最適化）
 gem "cloudinary"
 
-# ActiveStorageとCloudinaryの連携用
-gem "activestorage-cloudinary-service"
-
 # ActiveStorageのバリデーション
 gem "active_storage_validations"
