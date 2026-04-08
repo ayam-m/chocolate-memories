@@ -2,11 +2,12 @@ class RecordsController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @records = Record.all
+    @record_type = params[:record_type] || "eaten"
+    @records = Record.where(record_type: @record_type).order(event_date: :desc)
   end
 
   def new
-    @record = Record.new(record_type: params[:record_type] || :eaten)
+    @record = Record.new(record_type: params[:record_type] || "eaten")
     @record.build_tasting if @record.eaten?
   end
 
