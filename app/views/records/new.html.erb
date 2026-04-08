@@ -1,6 +1,6 @@
 <div class="record-type-toggle rounded-xl flex m-8">
-  <%= link_to "実食記録", new_record_path(record_type: :eaten), data: { turbo: false }, class: "px-4 py-2 border #{@record.eaten? ? 'rounded-l-lg bg-taupe-600 text-white' : 'rounded-l-lg bg-white-100 hover:bg-taupe-200'}" %>
-  <%= link_to "贈答記録", new_record_path(record_type: :gifted), data: { turbo: false }, class: "px-4 py-2 border #{@record.gifted? ? 'rounded-r-lg bg-taupe-600 text-white' : 'rounded-r-lg bg-white-100 hover:bg-taupe-200'}" %>
+  <%= link_to "実食記録", new_record_path(record_type: 'eaten'), data: { turbo: false }, class: "px-4 py-2 border #{@record.record_type == 'eaten' ? 'rounded-l-lg bg-taupe-600 text-white' : 'rounded-l-lg bg-white-100 hover:bg-taupe-200'}" %>
+  <%= link_to "贈答記録", new_record_path(record_type: 'gifted'), data: { turbo: false }, class: "px-4 py-2 border #{@record.record_type == 'gifted' ? 'rounded-r-lg bg-taupe-600 text-white' : 'rounded-r-lg bg-white-100 hover:bg-taupe-200'}" %>
 </div>
 
 <%= render "#{@record.record_type}_form", record: @record %>
