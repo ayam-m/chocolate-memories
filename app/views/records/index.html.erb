@@ -1,13 +1,24 @@
 <div class="mx-auto px-4">
-  <h1 class="text-2xl font-bold m-8 mb-4">仮の一覧画面</h1>
-  <div class="flex flex-wrap gap-4">
+  <div class="record-type-toggle rounded-xl flex m-8">
+    <%= link_to "実食記録", records_path(record_type: 'eaten'), data: { turbo: false }, class: "px-4 py-2 border #{@record_type == 'eaten' ? 'rounded-l-lg bg-taupe-600 text-white' : 'rounded-l-lg bg-white-100 hover:bg-taupe-200'}" %>
+    <%= link_to "贈答記録", records_path(record_type: 'gifted'), data: { turbo: false }, class: "px-4 py-2 border #{@record_type == 'gifted' ? 'rounded-r-lg bg-taupe-600 text-white' : 'rounded-r-lg bg-white-100 hover:bg-taupe-200'}" %>
+  </div>
+  <div class="flex flex-wrap gap-3 p-10 justify-items-center grid md:grid-cols-5">
     <% if @records.present? %>
-      <% @records.each do |record| %>
-        <div id="record-<%= record.id %>">
-          <%= link_to record_path(record) do %>
-            <%= image_tag switch_image_path(record.image, 300, 300), class: "w-48 h-48 object-cover" %>
-          <% end %>
-        </div>
-      <% end %>
+        <% @records.each do |record| %>
+          <div class="bg-white border rounded overflow-hidden shadow-sm hover:bg-taupe-200 transition p-3">
+            <div id="record-<%= record.id %>">
+              <%= link_to record_path(record) do %>
+                <%= image_tag switch_image_path(record.image, 300, 300), class: "w-48 h-48 object-contain rounded" %>
+                <p class="text-sm text-gray-700 my-2"><%= record.event_date %></p>
+                <p class="font-bold text-sm truncate"><%= record.brand&.name %></p>
+              <% end %>
+            </div>
+          </div>
+        <% end %>
+    
+    <% else %>
+      <p class="text-center text-gray-500 py-10">データがありません</p>
     <% end %>
+  </div>
 </div>
