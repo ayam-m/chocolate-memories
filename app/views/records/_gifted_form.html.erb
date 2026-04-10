@@ -22,16 +22,18 @@
         <!-- 本物の入力欄（hidden） -->
         <%= f.file_field :image, 
             class: "hidden", 
-            data: { 
+            accept: "image/png, image/jpeg, image/gif",
+            data: {
               preview_target: "input", 
               action: "change->preview#update" 
             } %>
       </div>
       
-      <!-- プレビューの表示 -->
+      <!-- プレビューの表示：編集ページでも現在の画像が表示されるようにsrcとclassを出し分ける -->
       <div class="mt-2">
-        <img data-preview-target="image" src="" 
-            class="hidden w-full max-w-md h-60 object-contain rounded border border-gray-300 bg-gray-100">
+        <img data-preview-target="image" 
+          src="<%= f.object.image.attached? ? url_for(switch_image_path(f.object.image, 300, 300)) : "" %>"  
+          class="<%= f.object.image.attached? ? "" : "hidden" %> w-full max-w-md h-60 object-contain rounded border border-gray-300 bg-gray-100">
       </div>
     </div>
 
@@ -56,7 +58,7 @@
       <%= f.text_area :memo, class: "border border-gray-300 bg-white rounded px-3 py-5 mb-6 w-full" %>
     </div>
 
-    <%= f.submit "保存", class: "bg-amber-900 text-white px-4 py-2 my-5 rounded-lg w-full text-md hover:bg-amber-800" %>
+    <%= f.submit class: "bg-amber-900 text-white px-4 py-2 my-5 rounded-lg w-full text-md hover:bg-amber-800" %>
   <% end %>
   </div>
 </div>
