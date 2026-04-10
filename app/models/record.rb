@@ -13,16 +13,26 @@ class Record < ApplicationRecord
   # 新規作成時にevent_dateのデフォルト値を今日に設定
   after_initialize :set_default_event_date, if: :new_record?
 
-  # ブランド名としてbrand_nameを仮想属性とし、保存前にブランドを検索または作成して関連付ける
+  # ブランド名としてbrand_nameを仮想属性とし、保存前にブランド名を検索または作成して関連付ける
   attr_accessor :brand_name
-  before_validation :set_brand_by_name
+  before_validation :set_brand_name
 
   # tasting_attributes=メソッドが作成される
   accepts_nested_attributes_for :tasting, allow_destroy: true
 
+  # enumのrecord_typeを日本語化
+  def record_type_i18n
+    I18n.t("enums.record.record_type.#{record_type}")
+  end
+
+  # 編集画面で入力したブランド名を維持するため
+  def brand_name
+    @brand_name || brand&.name
+  end
+
   private
 
-  def set_brand_by_name
+  def set_brand_name
     if brand_name.present?
       self.brand = Brand.find_or_create_by(name: brand_name)
     end

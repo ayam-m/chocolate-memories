@@ -1,0 +1,10 @@
+ja:
+  enums:
+    record:
+      record_type:
+        eaten: 実食
+        gifted: 贈答
+  helpers:
+    submit:     
+      create: 保存
+      update: 更新
