@@ -1,6 +1,6 @@
 class RecordsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_record, only: %i[show edit update]
+  before_action :set_record, only: %i[show edit update destroy]
 
   def index
     @record_type = params[:record_type] || "eaten"
@@ -31,12 +31,25 @@ class RecordsController < ApplicationController
   end
 
   def update
+    # 画像が変更された場合、Cloudinaryの古い画像を削除してから更新
+    @record.image.purge if params[:record][:image].present?
+
     if @record.update(record_params)
       redirect_to record_path(@record), notice: "#{@record.record_type_i18n}記録が更新されました。"
     else
       flash.now[:alert] = "#{@record.record_type_i18n}記録が更新されませんでした。"
       render :edit, status: :unprocessable_entity
     end
+  end
+
+  def destroy
+    # 画像が添付されていればCloudinaryから削除してからレコードを削除
+    if @record.image.attached?
+      @record.image.purge
+    end
+
+    @record.destroy!
+    redirect_to records_path(record_type: @record.record_type), notice: "#{@record.record_type_i18n}記録を1件削除しました。", status: :see_other
   end
 
   private

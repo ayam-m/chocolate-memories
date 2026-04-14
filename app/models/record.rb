@@ -1,7 +1,7 @@
 class Record < ApplicationRecord
   belongs_to :user
   belongs_to :brand, optional: true
-  has_one_attached :image, dependent: :destroy
+  has_one_attached :image, dependent: :purge
   has_one :tasting, dependent: :destroy
   enum :record_type, { eaten: 0, gifted: 1 }
   validates :record_type, presence: true
