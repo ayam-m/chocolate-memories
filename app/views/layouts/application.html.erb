@@ -27,7 +27,7 @@
       <%= content_tag(:div, message, class: "alert alert-#{message_type}") %>
     <% end %>
     <%= yield %>
-    <!-- フッターを表示 -->
-    <%= render 'shared/footer' %>
+    <!-- ログイン後はフッターを表示 -->
+    <%= render 'shared/footer' if user_signed_in? %>
   </body>
 </html>
