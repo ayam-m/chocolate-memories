@@ -1,5 +1,4 @@
 class RecordsController < ApplicationController
-  before_action :authenticate_user!
   before_action :set_record, only: %i[show edit update destroy]
 
   def index
