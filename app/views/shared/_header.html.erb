@@ -1,24 +1,24 @@
 <header class="fixed top-0 w-full bg-orange-50 shadow-sm border-b border-amber-100">
   <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex items-center justify-between">
     <div class="flex items-center">
-      <%= link_to "ショコラの記憶", root_path, class:"text-2xl font-bold font-serif text-amber-900 rounded hover:bg-orange-200 transition-all duration-300" %>
+      <%= link_to "ショコラの記憶", root_path, class:"text-2xl font-bold font-serif text-amber-900 rounded hover:bg-orange-100 transition-all duration-300" %>
     </div>
     
     <div class="flex items-center gap-4">
       <!-- ログインしている時 -->
       <% if user_signed_in? %>
-        <%= button_to "ログアウト", destroy_user_session_path, method: :delete, class: "bg-amber-900 text-white px-4 py-2 rounded-md text-sm hover:bg-amber-800" %>
+        <%= button_to "ログアウト", destroy_user_session_path, method: :delete, class: "bg-amber-900 text-white px-4 py-2 rounded-md text-sm hover:bg-amber-800 cursor-pointer transition-all duration-300" %>
       <% else %>
         <!-- ログイン前でユーザー登録画面にいる時 -->
         <% if current_page?(new_user_registration_path) %>
-          <%= link_to "ログイン", new_user_session_path, class: "bg-amber-900 text-white px-4 py-2 rounded-md text-sm hover:bg-amber-800" %>
+          <%= link_to "ログイン", new_user_session_path, class: "bg-amber-900 text-white px-4 py-2 rounded-md text-sm hover:bg-amber-800 transition-all duration-300" %>
         <!-- ログイン画面にいる時 -->
         <% elsif current_page?(new_user_session_path) %>
-          <%= link_to "新規登録", new_user_registration_path, class: "bg-amber-900 text-white px-4 py-2 rounded-md text-sm hover:bg-amber-800" %>
+          <%= link_to "新規登録", new_user_registration_path, class: "bg-amber-900 text-white px-4 py-2 rounded-md text-sm hover:bg-amber-800 transition-all duration-300" %>
         <!-- それ以外はどちらも表示 -->
         <% else %>
-          <%= link_to "新規登録", new_user_registration_path, class: "bg-amber-900 text-white px-4 py-2 rounded-md text-sm hover:bg-amber-800" %>
-          <%= link_to "ログイン", new_user_session_path, class: "bg-amber-900 text-white px-4 py-2 rounded-md text-sm hover:bg-amber-800" %> 
+          <%= link_to "新規登録", new_user_registration_path, class: "bg-amber-900 text-white px-4 py-2 rounded-md text-sm hover:bg-amber-800 transition-all duration-300" %>
+          <%= link_to "ログイン", new_user_session_path, class: "bg-amber-900 text-white px-4 py-2 rounded-md text-sm hover:bg-amber-800 transition-all duration-300" %> 
         <% end %>
       <% end %>
     </div>
