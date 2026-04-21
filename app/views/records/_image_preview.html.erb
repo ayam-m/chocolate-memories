@@ -1,0 +1,40 @@
+<div data-controller="preview" class="mb-6">
+  <!-- ボタンエリア -->
+  <div class="flex items-center space-x-4 mb-4">
+    <label class="text-md text-gray-700">画像:</label>
+
+    <!-- ファイル選択ボタン -->
+    <label for="<%= f.field_id(:image) %>" 
+          class="cursor-pointer bg-white border border-gray-300 px-4 py-2 rounded text-xs hover:bg-gray-200">
+      ファイル選択
+    </label>
+
+    <!-- 本物の入力欄（hidden） -->
+    <%= f.file_field :image, 
+        class: "hidden", 
+        accept: "image/*",
+        data: { 
+          preview_target: "input", action: "change->preview#update" 
+        } %>
+  </div>
+
+  <!-- 注意書き -->
+  <small class="block text-sm text-gray-500">
+    ※画像形式はJPEG, PNG, GIF (5MB以内)で選択してください。
+  </small>
+  
+  <!-- プレビューの表示：編集ページでも現在の画像が表示されるようにする -->
+  <div class="mt-2">
+    <% if f.object.image.attached? && f.object.image.persisted? %>
+      <!-- 編集画面で既存の画像がありDBに保存されていればその画像を表示 -->
+      <img data-preview-target="image"
+        <%= image_tag switch_image_path(@record.image, 300, 300),
+          class: "w-full max-w-md h-60 object-contain rounded border border-gray-300 bg-gray-100" %>
+    <% else %>
+      <!-- 画像未選択であれば、hiddenで画面上から隠しておく(新規記録登録、編集どちらも対応) -->
+      <img data-preview-target="image" 
+        <%= image_tag "",
+          class: "hidden w-full max-w-md h-60 object-contain rounded-lg border border-gray-300 shadow-inner bg-gray-50" %>
+    <% end %>
+  </div>
+</div>

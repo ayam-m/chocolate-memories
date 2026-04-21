@@ -9,16 +9,15 @@
           <div class="bg-white border rounded overflow-hidden shadow-sm hover:bg-taupe-200 transition p-3">
             <div id="record-<%= record.id %>">
               <%= link_to record_path(record) do %>
-                <%= image_tag switch_image_path(record.image, 300, 300), class: "w-48 h-48 object-contain rounded" %>
+                <%= image_tag switch_image_path(record.image, 300, 300), class: "w-48 h-48 object-contain rounded bg-stone-100" %>
                 <p class="text-sm text-gray-700 my-2"><%= record.event_date %></p>
                 <p class="font-bold text-sm truncate"><%= record.brand&.name %></p>
               <% end %>
             </div>
           </div>
         <% end %>
-    
     <% else %>
-      <p class="text-center text-gray-500 py-10">データがありません</p>
+      <p class="text-center text-gray-500 py-10">記録がありません</p>
     <% end %>
   </div>
 </div>

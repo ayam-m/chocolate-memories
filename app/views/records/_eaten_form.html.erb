@@ -1,84 +1,59 @@
 <div class="min-h-screen flex flex-col justify-center lg:px-8">
-  <div class="sm:mx-auto sm:w-full sm:max-w-md">
-    <h2 class="mb-6 text-center text-3xl font-extrabold">食べた記録</h2>
-  <%= form_with model: @record do |f| %>
-    <!-- エラーメッセージ表示 -->
-    <%= render 'shared/error_messages', object: f.object %>
-    <!-- 隠しデータ -->
-    <%= f.hidden_field :record_type, value: :eaten %>
+  <div class="sm:mx-auto sm:w-full sm:max-w-lg">
+    <div class="bg-white py-8 px-4 shadow rounded-md sm:px-10">
+      <h2 class="mb-6 text-center text-3xl font-extrabold tracking-widest">実食記録</h2>
+      <%= form_with model: @record do |f| %>
+        <!-- エラーメッセージ表示 -->
+        <%= render 'shared/error_messages', object: f.object %>
+        <!-- 隠しデータ -->
+        <%= f.hidden_field :record_type, value: :eaten %>
 
-    <!-- 画像アップロード -->
-    <div data-controller="preview" class="mb-6">
-      <!-- ボタンエリア -->
-      <div class="flex items-center space-x-4 mb-4">
-        <label class="text-md text-gray-700">画像:</label>
+        <!-- 画像アップロード -->
+        <%= render 'image_preview', f: f %>
 
-        <!-- ファイル選択ボタン -->
-        <label for="<%= f.field_id(:image) %>" 
-              class="cursor-pointer bg-white border border-gray-300 px-4 py-2 rounded text-sm hover:bg-gray-200">
-          ファイルを選択
-        </label>
+        <div class="field pt-3">
+          <%= f.label :event_date, "実食日:", class: "text-md text-gray-800" %>
+          <%= f.date_field :event_date, class: "cursor-text border border-gray-300 bg-white rounded px-3 py-2 mb-6 w-full text-gray-600" %>
+        </div>         
 
-        <!-- 本物の入力欄（hidden） -->
-        <%= f.file_field :image, 
-            class: "hidden", 
-            accept: "image/png, image/jpeg, image/gif",
-            data: { 
-              preview_target: "input", 
-              action: "change->preview#update" 
-            } %>
-      </div>
-      
-      <!-- プレビューの表示：編集ページでも現在の画像が表示されるようにsrcとclassを出し分ける -->
-      <div class="mt-2">
-        <img data-preview-target="image" 
-          src="<%= f.object.image.attached? ? url_for(switch_image_path(f.object.image, 300, 300)) : "" %>"  
-          class="<%= f.object.image.attached? ? "" : "hidden" %> w-full max-w-md h-60 object-contain rounded border border-gray-300 bg-gray-100">
-      </div>
-    </div>
+        <div class="field">
+          <%= f.label :brand_name, "ブランド名:", class: "text-md text-gray-800" %>
+          <%= f.text_field :brand_name, class: "border border-gray-300 bg-white rounded px-3 py-2 mb-6 w-full" %>
+        </div>
 
-    <div class="field">
-      <%= f.label :event_date, "実食日:", class: "text-md text-gray-800" %>
-      <%= f.date_field :event_date, class: "border border-gray-300 bg-white rounded px-3 py-2 mb-6 w-full text-gray-600" %>
-    </div>         
+        <!-- テイスティング項目 tasting_fieldsファイルでCSS統一 -->
+        <div class="field">
+          <%= f.fields_for :tasting do |t| %>
+            <%# 甘さ %>
+            <%= render 'tasting_fields',
+              form: t,
+              field: :sweetness,
+              label: "甘さ:",
+              options: Tasting::SWEETNESS_OPTS.values %>
+            
+            <%# 濃厚さ %>
+            <%= render 'tasting_fields',
+              form: t,
+              field: :richness,
+              label: "濃厚さ:",
+              options: Tasting::RICHNESS_OPTS.values %>
 
-    <div class="field">
-      <%= f.label :brand_name, "ブランド名:", class: "text-md text-gray-800" %>
-      <%= f.text_field :brand_name, class: "border border-gray-300 bg-white rounded px-3 py-2 mb-6 w-full" %>
-    </div>
+            <%# 口どけ %>
+            <%= render 'tasting_fields',
+              form: t,
+              field: :melting,
+              label: "口どけ:",
+              options: Tasting::MELTING_OPTS.values %>
+          <% end %>
+        </div>
 
-    <!-- テイスティング項目 tasting_fieldsファイルでCSS統一 -->
-    <div class="field">
-      <%= f.fields_for :tasting do |t| %>
-        <%# 甘さ %>
-        <%= render 'tasting_fields',
-          form: t,
-          field: :sweetness,
-          label: "甘さ:",
-          options: Tasting::SWEETNESS_OPTS.values %>
-        
-        <%# 濃厚さ %>
-        <%= render 'tasting_fields',
-          form: t,
-          field: :richness,
-          label: "濃厚さ:",
-          options: Tasting::RICHNESS_OPTS.values %>
+        <div class="mt-9">
+          <%= f.label :memo, "メモ:", class: "text-md text-gray-800" %>
+          <%= f.text_area :memo, class: "border border-gray-300 bg-white rounded px-3 py-5 mb-6 w-full" %>
+        </div>
 
-        <%# 口どけ %>
-        <%= render 'tasting_fields',
-          form: t,
-          field: :melting,
-          label: "口どけ:",
-          options: Tasting::MELTING_OPTS.values %>
+        <%= f.submit class: "bg-amber-900 text-white px-4 py-2 my-5 rounded-lg w-full text-md hover:bg-amber-800 cursor-pointer" %>
       <% end %>
     </div>
-
-    <div class="mt-9">
-      <%= f.label :memo, "メモ:", class: "text-md text-gray-800" %>
-      <%= f.text_area :memo, class: "border border-gray-300 bg-white rounded px-3 py-5 mb-6 w-full" %>
-    </div>
-
-    <%= f.submit class: "bg-amber-900 text-white px-4 py-2 my-5 rounded-lg w-full text-md hover:bg-amber-800" %>
-  <% end %>
   </div>
 </div>
