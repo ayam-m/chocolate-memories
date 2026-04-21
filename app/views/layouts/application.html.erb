@@ -7,6 +7,9 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
+    <!-- ファビコン -->
+    <%= favicon_link_tag 'favicon.ico' %>
+
     <%= yield :head %>
 
     <!-- <link rel="manifest" href="/manifest.json"> -->
@@ -23,9 +26,7 @@
     <%= render 'shared/header' %>
     <main class="pt-20 pb-24 min-h-screen">
     <!-- フラッシュメッセージの表示 -->
-    <% flash.each do |message_type, message| %>
-      <%= content_tag(:div, message, class: "alert alert-#{message_type}") %>
-    <% end %>
+    <%= render 'shared/flash_messages' %>
     <%= yield %>
     <!-- ログイン後はフッターを表示 -->
     <%= render 'shared/footer' if user_signed_in? %>

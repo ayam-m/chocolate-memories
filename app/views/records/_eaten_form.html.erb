@@ -1,57 +1,59 @@
 <div class="min-h-screen flex flex-col justify-center lg:px-8">
-  <div class="sm:mx-auto sm:w-full sm:max-w-md">
-    <h2 class="mb-6 text-center text-3xl font-extrabold">食べた記録</h2>
-    <%= form_with model: @record do |f| %>
-      <!-- エラーメッセージ表示 -->
-      <%= render 'shared/error_messages', object: f.object %>
-      <!-- 隠しデータ -->
-      <%= f.hidden_field :record_type, value: :eaten %>
+  <div class="sm:mx-auto sm:w-full sm:max-w-lg">
+    <div class="bg-white py-8 px-4 shadow rounded-md sm:px-10">
+      <h2 class="mb-6 text-center text-3xl font-extrabold tracking-widest">実食記録</h2>
+      <%= form_with model: @record do |f| %>
+        <!-- エラーメッセージ表示 -->
+        <%= render 'shared/error_messages', object: f.object %>
+        <!-- 隠しデータ -->
+        <%= f.hidden_field :record_type, value: :eaten %>
 
-      <!-- 画像アップロード -->
-      <%= render 'image_preview', f: f %>
+        <!-- 画像アップロード -->
+        <%= render 'image_preview', f: f %>
 
-      <div class="field">
-        <%= f.label :event_date, "実食日:", class: "text-md text-gray-800" %>
-        <%= f.date_field :event_date, class: "border border-gray-300 bg-white rounded px-3 py-2 mb-6 w-full text-gray-600" %>
-      </div>         
+        <div class="field pt-3">
+          <%= f.label :event_date, "実食日:", class: "text-md text-gray-800" %>
+          <%= f.date_field :event_date, class: "cursor-text border border-gray-300 bg-white rounded px-3 py-2 mb-6 w-full text-gray-600" %>
+        </div>         
 
-      <div class="field">
-        <%= f.label :brand_name, "ブランド名:", class: "text-md text-gray-800" %>
-        <%= f.text_field :brand_name, class: "border border-gray-300 bg-white rounded px-3 py-2 mb-6 w-full" %>
-      </div>
+        <div class="field">
+          <%= f.label :brand_name, "ブランド名:", class: "text-md text-gray-800" %>
+          <%= f.text_field :brand_name, class: "border border-gray-300 bg-white rounded px-3 py-2 mb-6 w-full" %>
+        </div>
 
-      <!-- テイスティング項目 tasting_fieldsファイルでCSS統一 -->
-      <div class="field">
-        <%= f.fields_for :tasting do |t| %>
-          <%# 甘さ %>
-          <%= render 'tasting_fields',
-            form: t,
-            field: :sweetness,
-            label: "甘さ:",
-            options: Tasting::SWEETNESS_OPTS.values %>
-          
-          <%# 濃厚さ %>
-          <%= render 'tasting_fields',
-            form: t,
-            field: :richness,
-            label: "濃厚さ:",
-            options: Tasting::RICHNESS_OPTS.values %>
+        <!-- テイスティング項目 tasting_fieldsファイルでCSS統一 -->
+        <div class="field">
+          <%= f.fields_for :tasting do |t| %>
+            <%# 甘さ %>
+            <%= render 'tasting_fields',
+              form: t,
+              field: :sweetness,
+              label: "甘さ:",
+              options: Tasting::SWEETNESS_OPTS.values %>
+            
+            <%# 濃厚さ %>
+            <%= render 'tasting_fields',
+              form: t,
+              field: :richness,
+              label: "濃厚さ:",
+              options: Tasting::RICHNESS_OPTS.values %>
 
-          <%# 口どけ %>
-          <%= render 'tasting_fields',
-            form: t,
-            field: :melting,
-            label: "口どけ:",
-            options: Tasting::MELTING_OPTS.values %>
-        <% end %>
-      </div>
+            <%# 口どけ %>
+            <%= render 'tasting_fields',
+              form: t,
+              field: :melting,
+              label: "口どけ:",
+              options: Tasting::MELTING_OPTS.values %>
+          <% end %>
+        </div>
 
-      <div class="mt-9">
-        <%= f.label :memo, "メモ:", class: "text-md text-gray-800" %>
-        <%= f.text_area :memo, class: "border border-gray-300 bg-white rounded px-3 py-5 mb-6 w-full" %>
-      </div>
+        <div class="mt-9">
+          <%= f.label :memo, "メモ:", class: "text-md text-gray-800" %>
+          <%= f.text_area :memo, class: "border border-gray-300 bg-white rounded px-3 py-5 mb-6 w-full" %>
+        </div>
 
-      <%= f.submit class: "bg-amber-900 text-white px-4 py-2 my-5 rounded-lg w-full text-md hover:bg-amber-800" %>
-    <% end %>
+        <%= f.submit class: "bg-amber-900 text-white px-4 py-2 my-5 rounded-lg w-full text-md hover:bg-amber-800 cursor-pointer" %>
+      <% end %>
+    </div>
   </div>
 </div>

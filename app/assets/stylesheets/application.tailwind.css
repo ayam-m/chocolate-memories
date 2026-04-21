@@ -1,1 +1,17 @@
 @import "tailwindcss";
+
+@layer base {
+  input[type="date"]::-webkit-calendar-picker-indicator {
+    cursor: pointer;
+    width: 22px;
+    height: 22px;
+    padding: 3px;
+    border-radius: 2px; /* 背景を丸く */
+    transition: background-color 0.2s; /* ふわっと色変え */
+  }
+
+  /* ホバーした時だけ背景色を出す */
+  input[type="date"]::-webkit-calendar-picker-indicator:hover {
+    background-color: rgba(255, 145, 0, 0.267);
+  }
+}
