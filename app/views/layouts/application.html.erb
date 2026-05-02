@@ -7,15 +7,13 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <!-- ファビコン -->
-    <%= favicon_link_tag 'favicon.ico' %>
-
     <%= yield :head %>
 
-    <!-- <link rel="manifest" href="/manifest.json"> -->
-    <link rel="icon" href="/icon.png" type="image/png">
+    <!-- ファビコン -->
+    <%= favicon_link_tag 'favicon.ico' %>
+    <link rel="icon" type="image/png" sizes="32x32" href="<%= asset_path 'favicon-32x32.png' %>">
     <link rel="icon" href="/icon.svg" type="image/svg+xml">
-    <link rel="apple-touch-icon" href="/icon.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="<%= asset_path 'apple-touch-icon.png' %>">
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_include_tag "application", "data-turbo-track": "reload", type: "module" %>
   </head>
