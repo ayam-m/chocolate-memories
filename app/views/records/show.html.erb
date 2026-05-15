@@ -5,13 +5,13 @@
     <div class="relative h-auto bg-gray-100 p-4 shadow-xl border border-gray-200 grid grid-cols-1 md:grid-cols-[1fr_1.5fr] gap-6 rounded-lg items-start">
       
       <!-- 左側：画像表示 -->
-      <div class="w-full bg-gray-100 flex items-center justify-center shadow-lg rounded-lg sticky top-4">
-        <%= image_tag switch_image_path(@record.image, 800, 800), class: "max-w-full h-auto object-contain rounded-lg" %>
+      <div class="w-full bg-gray-100 flex items-center justify-center shadow-lg rounded-lg sticky p-2">
+        <%= image_tag switch_image_path(@record.image, 800, 800), class: "min-h-24 w-full object-contain md:h-full" %>
       </div>
 
       <!-- 右側：テキスト -->
-      <div class="flex flex-col px-2 min-w-0 relative">
-        <ul class="mt-6 space-y-4 text-xl font-bold">
+      <div class="flex flex-col px-1 min-w-0 relative">
+        <ul class="mt-2 md:mt-6 space-y-2 md:space-y-4 text-base md:text-xl font-bold">
           <% if @record.record_type == "gifted" %>
             <li>贈答日: <%= @record.event_date %></li>
             <li>宛名: <%= @record&.recipient_name %></li>
@@ -19,7 +19,7 @@
             <li>実食日: <%= @record.event_date %></li>
           <% end %>
 
-          <li class="mb-8">ブランド名: <%= @record.brand&.name%></li>
+          <li class="mb-4 md:mb-8">ブランド名: <%= @record.brand&.name%></li>
 
           <% if @record.record_type == "eaten" %>
             <li class="flex">
@@ -43,8 +43,8 @@
           <% end %>
 
           <!-- メモが長い時に見た目が悪くならないよう改行して表示 -->
-          <li class="mt-8 flex flex-col">
-            <span class="text-xl font-bold">メモ:</span>
+          <li class="mt-4 md:mt-8 flex flex-col">
+            <span class="text-base md:text-xl font-bold">メモ:</span>
             <div class="ml-4 font-normal text-lg" style="word-break: break-all; overflow-wrap: anywhere; white-space: pre-wrap;"><%= @record&.memo %></div>
           </li>
         </ul>
