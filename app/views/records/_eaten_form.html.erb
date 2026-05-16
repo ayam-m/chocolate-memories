@@ -11,9 +11,9 @@
         <!-- 画像アップロード -->
         <%= render 'image_preview', f: f %>
 
-        <div class="field pt-3">
+        <div class="field">
           <%= f.label :event_date, "実食日:", class: "text-md text-gray-800" %>
-          <%= f.date_field :event_date, class: "cursor-text border border-gray-300 bg-white rounded px-3 py-2 mb-6 w-full text-gray-600" %>
+          <%= f.date_field :event_date, class: "appearance-none cursor-text border border-gray-300 bg-white rounded px-3 py-2 mb-6 w-full text-gray-600" %>
         </div>         
 
         <div class="field">
