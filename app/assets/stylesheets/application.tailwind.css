@@ -15,3 +15,13 @@
     background-color: rgba(255, 145, 0, 0.267);
   }
 }
+
+@layer components {
+  .btn {
+    @apply bg-amber-900 text-white px-3 py-2 rounded-md text-xs md:text-sm hover:bg-amber-800 transition-all duration-300 cursor-pointer;
+  }
+
+  .btn-full {
+    @apply w-full bg-amber-900 text-white px-3 py-2 rounded-md text-sm md:text-base hover:bg-amber-800 transition-all duration-300 cursor-pointer;
+  }
+}

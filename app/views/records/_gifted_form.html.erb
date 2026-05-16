@@ -13,7 +13,7 @@
 
         <div class="field pt-3">
           <%= f.label :event_date, "贈答日:", class: "text-md text-gray-800" %>
-          <%= f.date_field :event_date, class: "cursor-text border border-gray-300 bg-white rounded px-3 py-2 mb-6 w-full text-gray-600" %>
+          <%= f.date_field :event_date, class: "appearance-none cursor-text border border-gray-300 bg-white rounded px-3 py-2 mb-6 w-full text-gray-600" %>
         </div>
 
         <div class="field">
@@ -32,7 +32,7 @@
           <%= f.text_area :memo, class: "border border-gray-300 bg-white rounded px-3 py-5 mb-6 w-full" %>
         </div>
 
-        <%= f.submit class: "bg-amber-900 text-white px-4 py-2 my-5 rounded-lg w-full text-md hover:bg-amber-800 cursor-pointer" %>
+        <%= f.submit class: "btn-full" %>
       <% end %>
     </div>
   </div>
