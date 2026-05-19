@@ -67,3 +67,5 @@ gem "cloudinary"
 
 # ActiveStorageのバリデーション
 gem "active_storage_validations"
+
+gem "ransack"
