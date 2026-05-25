@@ -3,7 +3,8 @@ class RecordsController < ApplicationController
 
   def index
     @record_type = params[:record_type] || "eaten"
-    @records = current_user.records.where(record_type: @record_type).order(event_date: :desc)
+    @q = current_user.records.ransack(params[:q])
+    @records = @q.result(distinct: true).includes(:brand).where(record_type: @record_type).order(event_date: :desc)
   end
 
   def new

@@ -30,6 +30,14 @@ class Record < ApplicationRecord
     @brand_name || brand&.name
   end
 
+  def self.ransackable_attributes(auth_object = nil)
+    %w[name memo event_date recipient_name]
+  end
+
+  def self.ransackable_associations(auth_object = nil)
+    %w[brand]
+  end
+
   private
 
   def set_brand_name
