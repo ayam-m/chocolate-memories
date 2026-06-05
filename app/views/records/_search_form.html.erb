@@ -1,0 +1,21 @@
+<div class="flex justify-center p-4 ">
+  <%= search_form_for @q, url: records_path do |f| %>
+    <!-- 隠しデータ -->
+    <%= hidden_field_tag :record_type, @record_type %>
+    <!-- キーワードで検索（ブランド名、宛名、メモ） -->
+    <%= f.search_field :brand_name_or_recipient_name_or_memo_cont, class: "w-full border rounded-md py-2 px-4 focus:outline-none focus:ring-1 focus:ring-blue-500", placeholder: "キーワードで検索" %>
+    <div class="flex flex-col justify-center flex-row md:items-centergap-2 my-3">
+      <!-- 期間で検索 -->
+      <div class="field">
+        <%= f.label :event_date_gteq, "期間で検索:", class: "text-md text-gray-800 mr-2" %>
+        <%= f.date_field :event_date_gteq, class: "border rounded-md py-1 px-1 focus:outline-none focus:ring-1 focus:ring-blue-500" %>  
+        <span>〜</span>
+        <%= f.date_field :event_date_lteq, class: "border rounded-md py-1 px-1 focus:outline-none focus:ring-1 focus:ring-blue-500" %>
+      </div>
+      
+    </div>
+    <div class="flex flex-col justify-center">
+      <%= f.submit "絞り込み", class: "btn px-3 py-2" %>
+    </div>
+  <% end %>
+</div>
